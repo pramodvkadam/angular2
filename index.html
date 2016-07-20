@@ -1,0 +1,38 @@
+﻿<html>
+  <head>
+    <title>ACSI</title>
+    <meta charset="UTF-8">
+      <base href="/">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+     
+      <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css" />
+
+    <link rel="stylesheet" href="styles.css">
+    <!-- 1. Load libraries -->
+     <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+      <script src="node_modules/ng2-bootstrap/bundles/ng2-bootstrap.min.js"></script>
+    <script>
+        //System.config({
+        //    packages: {
+        //        app: {
+        //            format: "register",
+        //            defaultExtension: 'js'
+        //        }
+        //    }
+        //});
+      System.import('dist/main').catch(function(err){ console.error(err); });
+    </script>
+  </head>
+  <!-- 3. Display the application -->
+  <body>
+    <cgp-app>Loading...</cgp-app>
+  </body>
+</html>

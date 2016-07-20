@@ -1,0 +1,127 @@
+﻿<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand logo" href="#"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" dropdown (on-toggle)="toggled($event)">
+                    <a href id="simple-dropdown" dropdownToggle>
+                        <span class="fa fa-user" aria-hidden="true"></span>   HI {{userName}} <span href ng-bind="userName| uppercase"></span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+                        <!--<li *ngFor="let choice of items">
+                            <a class="dropdown-item" href="#">{{choice}}</a>
+                        </li>-->
+                        <!--<li><a class="link--inactive" ui-sref="tasks"><span class="fa fa-tasks" aria-hidden="true"></span> Tasks <span class="badge badge--small pull-right" ng-bind="vm.taskCount"></span></a></li>-->
+                        <!--<li><a class="link--inactive" ui-sref="mailhandling"><span class="fa fa-envelope" aria-hidden="true"></span> Mails <span class="badge badge--small pull-right" ng-bind="vm.mailCount"></span></a></li>-->
+                        <li><a class="link--inactive"><span class="fa fa-star" aria-hidden="true"></span> favourite</a></li>
+                        <li><a class="link--inactive"><span class="fa fa-list-alt" aria-hidden="true"></span> Recent</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a ui-sref="logout"><span class="fa fa-sign-out"></span>Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown" dropdown (on-toggle)="toggled($event)">
+                    <a href id="simple-dropdown" dropdownToggle>
+                        State Name <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" dropdownMenu aria-labelledby="simple-dropdown">
+                        <li><a [routerLink]="['/search']"><span class="fa fa-search" aria-hidden="true"></span> Search <span class="badge badge--small pull-right"></span></a></li>
+                        <li><a [routerLink]="['/statement']"><span class="fa fa-credit-card"></span> Statement </a></li>
+                        <li><a [routerLink]="['/statement']"><span class="fa fa-book"></span> Bookings </a></li>
+                        <li><a [routerLink]="['/status-monitor']"><span class="fa fa-eye"></span> Status Monitor </a></li>
+                        <li><a href><span class="fa fa-download"></span> Export </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10011&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspectortrainingday&pagetype=entitylist&viewid=%7bC0D7845F-4ED1-E511-80DE-005056BB6311%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-blackboard"></span> Training days <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10013&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspectorweekend&pagetype=entitylist&viewid=%7b06E1A45C-2DD6-E511-80DE-005056BB6311%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-tent"></span> Inspector weekend <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10008&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspection&pagetype=entitylist&viewid=%7b33045F64-A4BE-4CAA-9344-71C8499BCC38%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-copy"></span> Inspections <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                    </ul>
+                </li>
+            </ul>
+            <!--<ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">StateName <span class="caret"></span> </a>
+                    <ul class="dropdown-menu">
+                        <li><a><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search <span class="badge badge--small pull-right"></span></a></li>
+                        <li><a><span class="glyphicon glyphicon-credit-card"></span> Statement </a></li>
+                        <li><a><span class="glyphicon glyphicon-tent"></span> Bookings </a></li>
+                        <li><a><span class="glyphicon glyphicon-eye-open"></span> Status Monitor </a></li>
+                        <li><a><span class="glyphicon glyphicon-export"></span> Export </a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10011&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspectortrainingday&pagetype=entitylist&viewid=%7bC0D7845F-4ED1-E511-80DE-005056BB6311%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-blackboard"></span> Training days <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10013&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspectorweekend&pagetype=entitylist&viewid=%7b06E1A45C-2DD6-E511-80DE-005056BB6311%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-tent"></span> Inspector weekend <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                        <li><a href="http://crm-dev/Campsites/main.aspx?etc=10008&extraqs=%3fpagemode%3diframe%26sitemappath%3dCS%257cExtensions%257cacsi_inspection&pagetype=entitylist&viewid=%7b33045F64-A4BE-4CAA-9344-71C8499BCC38%7d&viewtype=1039)" target="_blank"><span class="glyphicon glyphicon-copy"></span> Inspections <span class="glyphicon glyphicon-new-window pull-right"></span></a></li>
+                        <li role="separator" class="divider"></li>
+                    </ul>
+                </li>
+            </ul>-->
+            <div class="header__search-block">
+                <form novalidate class="form-inline" name="form-inline">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <div href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span class="caret"></span></div>
+                                <ul class="dropdown-menu search-filter__container">
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Campsite" name="searchOptions" type="radio">
+                                            Campsite
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Inspector" name="searchOptions" type="radio">
+                                            Inspector
+                                        </label>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Account" name="searchOptions" type="radio">
+                                            Account
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Contact" name="searchOptions" type="radio">
+                                            Contact
+                                        </label>
+                                    </li>
+                                    <hr>
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Document" name="searchOptions" type="radio">
+                                            Document
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="input__radiobttn">
+                                            <input ng-model="vm.searchFor" id="searchforcampsite" value="Email" name="searchOptions" type="radio">
+                                            Email
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <input type="text" name="searchBy" ng-model="vm.searchBy" class="form-control" ng-pattern="/^[a-zA-Z0-9 .@_]*$/">
+                            <div class="input-group-addon">
+                                <a ng-click="vm.search()"><span class="glyphicon glyphicon-search"></span></a>
+                                <button type="submit" ng-click="vm.search()" ng-hide="true"><span class="glyphicon glyphicon-search"></span></button>
+                            </div>
+                            <div class="input-group-addon" ng-hide="vm.checkAllowedToAdd(vm.searchFor)">
+                                <a ng-click="vm.toggleModal(vm.searchFor)" class="glyphicon glyphicon-plus no-btn"></a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!--/.nav-collapse -->
+    </div><!--/.container-fluid -->
+</nav>
