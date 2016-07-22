@@ -1,0 +1,72 @@
+@import "compass/utilities/sprites";         // Include compass sprite helpers
+@import "compass/css3/background-size";      // Include helper to calc background size
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$sprite-location: "sprite/*.png" !default;
+$sprite-retina-location: "sprite2x/*.png" !default;
+$icon-sprite-base-class: ".sprite" !default;
+$icon-sprite-dimensions: true !default;
+$icon-spacing: 10px !default;
+$icon-position: 0% !default;
+$icon-repeat: no-repeat !default;
+$icon-layout: horizontal !default;
+
+$icon-sprites: sprite-map($sprite-location, $spacing: $icon-spacing, $repeat: $icon-repeat, $position: $icon-position, $layout: $icon-layout);
+$icon-sprites-retina: sprite-map($sprite-retina-location, $spacing: $icon-spacing * 2, $repeat: $icon-repeat, $position: $icon-position, $layout: $icon-layout);
+
+// All sprites should extend this class
+// The icon-sprite mixin will do so for you.
+
+@mixin icon-base-class {
+    @include inline-block();
+    vertical-align: middle;
+    background: $icon-sprites $icon-repeat;
+}
+
+@mixin retina-icon-base-class {
+    @include inline-block();
+    vertical-align: middle;
+    background: $icon-sprites-retina $icon-repeat;
+    @include background-size( ceil(image-width(sprite-path($icon-sprites-retina)) / 2) auto);
+}
+
+
+@mixin icon-sprite($name, $dimensions: $icon-sprite-dimensions, $offset-x: 0, $offset-y: 0, $use-base-class: true) {
+    @if $use-base-class {
+        @include icon-base-class;
+    }
+    @include sprite($icon-sprites, $name, $dimensions, $offset-x, $offset-y);
+}
+
+@mixin retina-icon-sprite($name, $dimensions: $icon-sprite-dimensions, $offset-x: 0, $offset-y: 0, $use-base-class: true) {
+    @if $use-base-class {
+        @include retina-icon-base-class;
+    }
+    @include sprite($icon-sprites, $name, $dimensions, $offset-x, $offset-y);
+}
+
+// Base sprite class. Used for setting background image
+#{$icon-sprite-base-class} {
+    @include icon-base-class;
+}
+
+// Loop through each image in the sprite and set background position for the image
+@each $sprite in sprite_names($icon-sprites) {
+    #{$icon-sprite-base-class}-#{$sprite} {
+        @include icon-sprite($sprite);
+    }
+}
+
+@media #{$retina} {
+
+    #{$icon-sprite-base-class} {
+        @include retina-icon-base-class;
+    }
+
+    @each $sprite in sprite_names($icon-sprites) {
+        #{$icon-sprite-base-class}-#{$sprite} {
+            @include retina-icon-sprite($sprite);
+        }
+    }
+}

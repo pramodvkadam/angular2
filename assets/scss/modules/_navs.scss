@@ -1,0 +1,79 @@
+.navbar {
+  .container,
+  .container-fluid {
+    .logo{
+      @include icon-sprite('acsi-logo');
+      margin: 10px 20px 10px 10px;
+      @media (min-width: $screen-sm) {
+        margin-left: 0;
+      }
+    }
+  }
+  .navbar-nav {
+    margin-top: 15px;
+  }
+  &.navbar-default{
+    @include border-radius(0);
+  }
+  .header__search-block{
+    margin: 20px;
+    .dropdown-menu {
+      li:not(.divider) {
+        padding: 0 10px;
+        @media (min-width: $screen-sm) {
+          padding: 5px 10px;
+        }
+        &:last-of-type .radio{
+          margin-bottom: 0;
+        }
+        .radio input[type=checkbox],
+        .radio input[type=radio] {
+          @media (min-width: $screen-sm) {
+            margin: 4px 0 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.nav-tabs>li {
+  .cell_graphic-indicator {
+    margin-right: 5px;
+  }
+  a {
+    outline: none;
+  }
+  &.not-checked {
+    a {
+      color: $red;
+    }
+    .cell_graphic-indicator {
+      background-color: $light-red;
+      color: $red;
+      border: $lightest-red;
+    }
+  }
+  &.checked {
+    a {
+      color: $green;
+    }
+    .cell_graphic-indicator {
+      background-color: $light-green;
+      color: $green;
+      border: $lightest-green;
+    }
+  }
+}
+
+
+
+
+.dropdown-menu {
+  min-width: 220px;
+  .fa:not(.pull-right) {
+    margin-right: $global-icon-right-margin;
+  }
+}
+

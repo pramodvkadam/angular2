@@ -1,0 +1,347 @@
+$orange				: #FFA500;
+$warning-color      : $orange;
+$exception-color    : $red;
+$information-color  : $green;
+$console--success	: $green;
+$console--progress  : $lighter-grey;
+$console--warning   : $warning-color;
+$console--exception : $exception-color;
+$console-background : #374047;
+
+$service__not-running 			:$lighter-grey;
+$service__started-not-running 	:darken($green,25);
+$service__started-and-running 	:$green;
+$service__take-long-time 		:$orange;
+$service__take-very-long-time	:$red;	
+
+.status-monitor__wrap{
+	padding: 0;
+    overflow: hidden;
+    position: fixed;
+    bottom: 20px;
+    top: 60px;
+}
+
+.message-panel__wrap{
+	padding: $global-padding/2 $global-padding*3/4;
+	overflow: auto;
+	height: 100%;
+	position: absolute;
+	padding-bottom: 50px;
+
+}
+.message__item{
+	border: 1px solid $lighter-grey;
+	background: $lightest-grey;
+	padding: $global-padding/10 $global-padding/2;
+	position: relative;
+	margin-bottom: 2px;
+	margin-right: $global-margin*5;
+	&:after{
+		position: absolute;
+        content: "";
+        width: 4px;
+        height: 100%;
+        background: $grey;
+        top: 0;
+        left: 0;
+	}
+	&.message-type--exception{
+		background: lighten($exception-color, 50%);
+		&:after{
+			background:$exception-color;
+		}
+	}
+	&.message-type--warning{
+		background: lighten($warning-color, 45%);
+		&:after{
+			background:$warning-color;
+		}
+	}
+	&.message-type--information{
+		background: lighten($information-color, 45%);
+		&:after{
+			background:$information-color;
+		}
+	}
+	@media (min-width: $screen-sm) {
+		margin-right: 0;
+	 }
+}
+.message__source{
+	font-size: 1em;
+	line-height: 110%;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin-bottom:0;
+	@media (min-width: $screen-sm) {
+		padding-right: 110px;
+	}
+}
+.message__subject{
+	font-size: 88%;
+	margin-bottom: 0;
+	max-height: 30px;
+	overflow: hidden;
+	line-height: 15px;
+}
+.message__date{
+	font-size: 85%;
+	@media (min-width: $screen-sm) {
+		position: absolute;
+		top: 5px;
+		right: 10px;
+	}
+}
+
+.console-panel__wrap{
+	background: $console-background;
+	padding-top: $global-padding*3/4;
+	width: calc(100% - 50px);
+	position: absolute;
+    right: 45px;
+    height: 100%;
+    padding-bottom: 40px;
+	@media (min-width: $screen-sm) {
+		margin-top: $global-margin*2;
+		width: calc(50% - 55px);
+	}
+}
+.console__title{
+	font-size: 1.125em;
+	line-height: 120%;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	color: $white;
+	background: lighten($console-background, 10);
+	padding: $global-padding/2;
+	margin-right: $global-margin*8;
+}
+.console__body{
+	padding: $global-padding/2 $global-padding/2 $global-padding/2 $global-padding*3/4;
+	margin: ($global-margin*3) (-$global-margin*3);
+	position: relative;
+	overflow: auto;
+	height: calc(100% - 50px);
+	@media (min-width: $screen-sm) {
+		height: calc(100% - 20px);
+	}
+	p{
+		white-space: nowrap;
+		margin: 0;
+		font-size: 88%;
+		line-height: 105%;
+		font-family: monospace;
+	}
+}
+.console--progress{
+	color: $console--progress;
+}
+.console--success{
+	color: $console--success;
+}
+.console--warning{
+	color: $console--warning;
+}
+.console--exception{
+	color: $console--exception;
+}
+
+.service-pane{
+	position: fixed;
+	top: 100px;
+	bottom:30px;
+	right: -280px;
+	width:320px;
+	border: 1px solid $lighter-grey;
+	background: #f9f9f9;
+	transition: 1s;
+	@media (min-width: $screen-sm) {
+		top: 70px;
+	}
+	&.open{
+		transition: 1s;
+		right: 0;
+		.left-right-slider{
+			background-image: url("../images/sprite/arrow-right.png");
+		}
+	}
+}
+.service-pane__wrap {
+	position: relative;
+    width: 100%;
+    height: 100%;
+}
+.left-right-slider{
+	position: absolute;
+	width: 40px;
+	height: 34px;
+	left: 0;
+	top: 0;
+	background-image: url("../images/sprite/arrow-left.png");
+	background-color: $green;
+	display: block;
+	background-size: 60%;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.service-pane__title{
+	font-size: 1.125em;
+	line-height: 120%;
+	font-weight: bold;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: $global-padding/2 ($global-padding*2)+10 ($global-padding/2)-3px;
+	position: absolute;
+    top: -1px;
+    right: 0;
+    left: 0;
+    z-index: 1;
+	background: $light-grey;
+}
+.service-list{
+	position: relative;
+    padding-top: 45px;
+    height: 100%;
+    overflow-y: auto;
+	overflow-x: hidden;
+}
+.service-list__item{
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	width: 100%;
+	align-items: center;
+	border-bottom: 1px solid $lighter-grey;
+	margin-bottom: $global-margin;
+	padding-bottom: $global-padding/4;
+}
+    
+.service-status {
+	width: 40px;
+	&.service__not-running{
+		span.service__buble {
+			background: $service__not-running;
+		}
+	}
+	&.service__started-not-running{
+		span.service__buble {
+			background: $service__started-not-running;
+		}
+	}
+	&.service__started-and-running{
+		span.service__buble {
+			background: $service__started-and-running;
+		}
+	}
+	&.service__take-long-time{
+		span.service__buble {
+			background: $service__take-long-time;
+		}
+	}
+	&.service__take-very-long-time{
+		span.service__buble {
+			background: $service__take-very-long-time;
+		}
+	}
+	
+}
+span.service__buble {
+	width: 20px;
+	height: 20px;
+	background: $lighter-grey;
+	display: block;
+	@include border-radius(100%);
+	margin: auto;
+}
+.service__detail{
+	width: calc(100% - 40px);
+}
+.message-detail__popup{
+	.ng-modal-dialog{
+		width:100%;
+		height:100%;
+		overflow:auto;
+		@media (min-width: $screen-sm) {
+			width:45%;
+			height:80%;
+		}
+	}
+}
+
+.message-detail__popup{
+	.ng-modal-dialog-content{
+		height: auto;
+	}
+}
+.message-detail-block{
+}
+.detail-information__wrap{
+	border: 1px solid $lighter-grey;
+	padding: $global-padding/2;
+	margin-bottom: $global-margin*3;
+	height: auto;
+	overflow: auto;
+	table{
+		margin: 0;
+		position: relative;
+	}
+}
+.message__wrap{
+	border: 1px solid $lighter-grey;
+	padding: $global-padding/2;
+	margin-bottom: $global-margin*3;
+	background: $lightest-grey;
+	height: 120px;
+	overflow: auto;
+	&.extra-height{
+		height: 360px;
+	}
+}
+.stacktrace__wrap{
+	border: 1px solid $lighter-grey;
+	padding: $global-padding/2;
+	margin-bottom: $global-margin*3;
+	background: $lightest-grey;
+	height: 230px;
+	overflow: auto;
+}
+.error-popup{
+	font-size: 2em;
+    text-align: center;
+    background: rgba($black,.4);
+    color: #fff;
+    display: block;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+	@media (min-width: $screen-sm) {
+		padding: 50px;
+		font-size: 3em;
+	}
+}
+.error-message{
+	background: $red;
+    padding: 20px;
+    width: 100%;
+    margin: 50px auto;
+	@media (min-width: $screen-sm) {
+		padding: 50px;
+		margin: 100px auto;
+	}
+}
+.setting-panel{
+	background: $green;
+    padding: 7px 15px;
+    margin-top: -8px;
+}

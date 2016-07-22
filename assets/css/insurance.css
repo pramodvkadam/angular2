@@ -1,0 +1,6 @@
+.insurance-report__wrap{
+	margin-top:10px;
+}
+.insurance-report__wrap .table{
+		table-layout:fixed;
+	}

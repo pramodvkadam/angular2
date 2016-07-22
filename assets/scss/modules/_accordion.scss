@@ -1,0 +1,40 @@
+.panel-title .fa {
+    margin-right: $global-icon-right-margin;
+}
+
+
+.form-horizontal .accordionFinance {
+    .panel-default {
+        &.checked {
+            border: $lightest-green;
+            .panel-heading {
+                background-color: $light-green;
+                a {
+                    color: $green;
+                }
+            }
+            .panel-body {
+                border-left: 1px solid $lightest-green;
+                border-right: 1px solid $lightest-green;
+                border-bottom: 1px solid $lightest-green;
+                border-top: 0;
+            }
+        }
+        &.not-checked {
+            border: $lightest-red;
+            .panel-heading {
+                background-color: $light-red;
+                a {
+                    color: $red;
+                }
+            }
+            .panel-body {
+                border-left: 1px solid $lightest-red;
+                border-right: 1px solid $lightest-red;
+                border-bottom: 1px solid $lightest-red;
+                border-top: 0;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,98 @@
+span.error,
+label.error {
+    @include border-radius(3px);
+    color: $error;
+    background-color: rgba($error-light,1);
+    padding: .5em;
+    margin-top: .5em;
+    position: relative;
+    display: block;
+
+    &:after {
+        left: 45px;
+        margin-left: -15px;
+        bottom: 100%;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+        border-bottom: 10px solid rgba($error-light, 1);
+    }
+}
+
+
+
+/*********************
+INPUTS
+*********************/
+
+// setting up defaults
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="month"],
+input[type="date"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+textarea,
+.field {
+
+    // error notification
+    & ~ span.error{
+        display:none;
+        margin-top:10px;
+        @extend label.error
+    }
+    &.error{
+        border-color: $error;
+        & ~ span.error{
+            display:inline-block;
+        }
+    }
+    // success notification
+    &.valid{
+        border-color: $valid;
+    }
+    // a disabled input
+    &[disabled],
+    &.is-disabled {
+        @include opacity(0.5);
+        cursor: default;
+
+        &:hover {
+            cursor: default;
+        }
+
+    }
+}
+
+
+.datepicker,
+input[type="date"] {
+    position: relative;
+    padding: .35em 0 .35em .5em;
+    background: $white url('../images/sprite/calendar.png') 98% center no-repeat;
+    &:hover {
+        background: $white url('../images/sprite/calendar-hover.png') 98% center no-repeat;
+    }
+}
+
+
+
+.ie8 {
+    input,
+    .field {
+        line-height: 1em;
+        min-height: 1.5em;
+    }
+}

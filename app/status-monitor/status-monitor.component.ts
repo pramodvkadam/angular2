@@ -1,8 +1,8 @@
 ﻿import { Component,OnInit }    from '@angular/core';
-import {StatusService} from './status-monitor.service';
 
 import {LogConsoleComponent} from '../log-console/log-console.component';
 import {NotificationComponent} from '../notifications/notifications.component';
+import {ServicePaneComponent} from '../service-pane/service-pane.component';
 
 
 
@@ -10,28 +10,26 @@ import {NotificationComponent} from '../notifications/notifications.component';
     selector : 'status-monitor',
   template:  `
 <div class="container-fluid">
-    <div class="status-monitor__wrap" style="padding:0; overflow:hidden;">
+    <div class="row">
         <div class="tab-content">
-            <log-console></log-console> <notifications></notifications>
+          <notifications></notifications>   <log-console></log-console>
         </div>
+<service-pane></service-pane>
     </div>
 </div>
   `,
-  providers: [StatusService],
-  directives: [LogConsoleComponent, NotificationComponent]
+  directives: [LogConsoleComponent, NotificationComponent, ServicePaneComponent]
 })
 export class StatusMonitorComponent implements OnInit {
 
     public services: Object;
 
-    constructor(private statusService:StatusService) {
+    constructor() {
 
     }
 
     ngOnInit() {
-        this.statusService.getServices().then((services) => {
-            console.log(services);
-        });
+       
     }
 
 }

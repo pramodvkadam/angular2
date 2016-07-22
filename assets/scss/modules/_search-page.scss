@@ -1,0 +1,152 @@
+$profile-width:70px;
+$profile-height:$profile-width;
+
+
+.search-item__wrap{
+	padding: $global-padding*3/4;
+    border-bottom: 1px solid $light-grey;
+	header{
+		display: inline-flex;
+		width: 100%;
+		align-items: center;
+		align-content: center;
+		flex-wrap: wrap;
+	}
+	
+	.search-item__picture{
+			position: relative;
+			width: $profile-width;
+			height: $profile-height;
+			@include border-radius( 100%);
+			overflow: hidden;
+			display: inline-block;
+			border: 1px solid transparent;
+			margin-right: -2px;
+			margin-bottom: 0;
+			img{
+				width:100%;
+			}
+		}
+		
+	.search-item__title{
+		width: 50%;
+		border-bottom: 2px solid transparent;
+		margin-bottom: 5px;
+		padding-left: $global-padding*3/4;
+		h3{
+			display: inline-block;
+			max-width: 60%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			margin-bottom: 0;
+			vertical-align: middle;
+		}
+		a.more-info{
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	.search-item__status{
+		display: inline-block;
+		float: right;
+		padding: ($global-padding/4)+2 $global-padding/2;
+		color: $status-color;
+		font-size: 15px;
+		text-align: center;
+		line-height: 130%;
+		@include border-radius( 0 4px 0 0);
+		width: 100px;
+	}
+	.search-item__details{
+		margin-left: $profile-width;
+		width: 50%;
+		padding-left: $global-padding*3/4;
+		
+		table{
+			margin-bottom:0;
+		}
+	}
+	.search-item__address{
+		display: block;
+		padding: $global-padding/2;
+		background-color: $meta-grey;
+		vertical-align: top;
+	}
+		
+	&.pre-active{
+		.search-item__picture{
+			border: 1px solid $status-pre-active-light;
+			@include box-shadow(0px 0px 5px $status-pre-active);
+		}
+		
+		.search-item__title{
+			border-bottom: 2px solid $status-pre-active;
+		}
+		.search-item__status{
+			background: $status-pre-active;
+			
+		}
+	}
+	&.active{
+		.search-item__picture{
+			border: 1px solid $status-active-light;
+			@include box-shadow(0px 0px 5px $status-active);
+		}
+		
+		.search-item__title{
+			border-bottom: 2px solid $status-active;
+		}
+		.search-item__status{
+			background: $status-active;
+			
+		}
+	}
+	&.inactive{
+		.search-item__picture{
+			border: 1px solid $status-inactive-light;
+			@include box-shadow(0px 0px 5px $status-inactive);
+		}
+		
+		.search-item__title{
+			border-bottom: 2px solid $status-inactive;
+		}
+		.search-item__status{
+			background: $status-inactive;
+			
+		}
+	}
+	&:hover{
+		background-color: $light-grey;
+		.search-item__address{
+			background-color: transparent;
+		}
+	}
+
+	.recent__list &, .favorite__list &{
+		.search-item__title{
+			width: calc(100% - #{$profile-width});
+			>h3{
+				max-width: 45%;
+			}
+		}
+		.campsite-status__list{
+			width: calc(100% - #{$profile-width});
+		}
+		.search-item__details{
+			margin-left: 0;
+			margin-top: $global-bottom-margin/3;
+			width: 100%;
+		}
+	} 
+}
+
+
+.campsite-status__list{
+	width: 50%;
+    margin-top: -($global-bottom-margin/2);
+    text-align: right;
+    margin-left: $profile-width;
+    margin-bottom: $global-bottom-margin/3;
+}
+

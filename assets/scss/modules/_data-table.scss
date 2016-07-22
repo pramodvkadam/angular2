@@ -1,0 +1,38 @@
+// cell fixed sizes
+.cell__narrow {
+	width: 24px;
+}
+
+
+.cell_graphic-indicator {
+	display: inline-block;
+	@include border-radius(50%);
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+	border: 1px solid;
+	text-align: center;
+}
+
+.cell__toggle {
+	text-align: center;
+	vertical-align: middle;
+	cursor: pointer;
+	&:after {
+		@include fa-icon("\f077");
+		margin-top: -16px;
+	}
+
+	&.cell__toggle-open {
+		&:after {
+			@include fa-icon("\f054");
+		}
+	}
+}
+
+
+//bootstrap overrides
+table.table--data > tbody > tr > td {
+	vertical-align: middle;
+}
+

@@ -1,0 +1,23 @@
+.modal-lg {
+	width: 80%;
+	height: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.accordion__edit__control {
+	text-align: center;
+	margin: auto;
+	.form-group:last-of-type {
+		margin-left: 10px;
+	}
+}
+
+@-moz-document url-prefix() {
+	fieldset { display: table-cell; }
+}
+
+.panel-heading .checkbox input[type=checkbox],
+.panel-heading .checkbox-inline input[type=checkbox] {
+	margin-top: 0;
+}

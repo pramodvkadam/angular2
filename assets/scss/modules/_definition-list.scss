@@ -1,0 +1,31 @@
+// Description Lists
+dl {
+	margin-top: 0; // Remove browser default
+
+}
+
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-left: 0; // Undo browser default
+}
+
+.definition__list {
+	dd {
+		@include clearfix; // Clear the floated `dt` if an empty `dd` is present
+	}
+
+	@media (min-width: $screen-sm) {
+		dt {
+			float: left;
+			width: ($dl-horizontal-offset - 20);
+			clear: left;
+			text-align: right;
+			@include text-overflow;
+		}
+		dd {
+			margin-left: $dl-horizontal-offset;
+		}
+	}
+}

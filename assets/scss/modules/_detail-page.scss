@@ -1,0 +1,126 @@
+.page__detail__block{
+	margin-top: $global-margin;
+	margin-bottom: $global-bottom-margin;
+	header{
+		display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        width: 100%;
+		align-items: center;
+		align-content: center;
+	}
+	.table-condensed{
+		th, td{
+			padding: 3px;
+		}
+	}
+}
+
+.page__detail__header{
+	&.pre-active{
+		.page__detail__profile-pic{
+			margin: 0;
+			border: 1px solid $status-pre-active-light;
+			@include box-shadow(0px 0px 5px $status-pre-active);
+		}
+		.page__detail__title{
+			border-bottom: 2px solid $status-pre-active;
+		}
+		.page__detail-status{
+			background: $status-pre-active;
+		}
+	}
+	&.active{
+		.page__detail__profile-pic{
+			border:1px solid $status-active-light;
+			@include box-shadow(0px 0px 5px $status-active);
+		}
+		.page__detail__title{
+			border-bottom: 2px solid $status-active;
+		}
+		.page__detail-status{
+			background:$status-active;
+		}
+	}
+	&.inactive{
+		.page__detail__profile-pic{
+			border:1px solid $status-inactive-light;
+			@include box-shadow(0px 0px 5px $status-inactive);
+		}
+		.page__detail__title{
+			border-bottom: 2px solid $status-inactive;
+		}
+		.page__detail-status{
+			background:$status-inactive;
+		}
+	}
+}
+
+
+$profile-pic-width: 100px;
+$profile-pic-height: $profile-pic-width;
+
+.page__detail__profile-pic {
+	position: relative;
+    width: $profile-pic-width;
+    min-width: $profile-pic-width;
+    height: $profile-pic-height;
+	@include border-radius(100%);
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid $light-grey;
+    margin-bottom: 0;
+	img{
+		width:100%;
+	}
+}
+
+.page__detail__title {
+	flex-grow: 1;
+	padding: 0 103px 2px $global-padding*3/4;
+    margin: 0 0 $global-bottom-margin/3 0px;
+    line-height: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+	position: relative;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+
+
+.page__detail-status {
+	display: inline-block;
+	float: right;
+	padding: ($global-padding/4)+2 $global-padding/2;
+	color: $status-color;
+	text-align: center;
+	line-height: 130%;
+	width: 100px;
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+}
+
+
+.page__detail__general-info {
+	margin-bottom: $global-bottom-margin/2;
+	width: 100%;
+    float: left;
+    padding-left: $profile-pic-width + 15;
+    margin-top: -35px;
+    display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	>span{
+		display: block;
+		width: 50%;
+	}
+}

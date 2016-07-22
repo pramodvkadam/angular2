@@ -1,0 +1,234 @@
+/* inspector-detail page */
+
+$profile-pic-width:100px;
+$profile-pic-height:$profile-pic-width;
+
+.inspector__quick-links{
+	text-align:right;
+	ul{
+		li{
+			display:inline-block;
+			font-size:16px;
+		}
+	}
+}
+
+.profile__container{
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+    align-items: flex-end;
+	justify-content: space-between;
+	padding:$global-padding*3/4;
+}
+.inspector__block, .account__block{
+	display: block;
+	padding:10px;
+	font-size:90%;
+	header{
+		display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+        display: inline-flex;
+        width: 100%;
+		align-items: center;
+		align-content: center;
+	}
+	.table-condensed{
+		th, td{
+			padding:3px;
+		}
+	}
+}
+.account__block{
+	width: 100%;
+}
+
+
+.inspector__profile-pic,
+.account__profile-pic{
+	position: relative;
+    width: $profile-pic-width;
+    min-width: $profile-pic-width;
+    height: $profile-pic-height;
+	@include border-radius(100%);
+    overflow: hidden;
+    display: inline-block;
+    border: 1px solid $light-grey;
+    margin-bottom: 0;
+	img{
+		width:100%;
+	}
+}
+
+.inspector__title,
+.account__title{
+	flex-grow:1;
+	padding: 0 103px 1px $global-padding*3/4;
+    margin: 0 0 $global-bottom-margin/3 0px;
+    line-height: 100%;
+    font-size: 25px;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+	position:relative;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+
+.inspector-status,
+.account-status{
+	display: inline-block;
+	float: right;
+	padding: ($global-padding/4)+2 $global-padding/2;
+	color: $status-color;
+	text-align: center;
+	line-height: 130%;
+	@include border-radius( 0 4px 0 0);
+	width: 100px;
+	font-size: 12px;
+	position: absolute;
+	right: 0;
+}
+
+.inspector__header{
+	&.pre-active{
+		.inspector__profile-pic{
+			border:1px solid $status-pre-active-light;
+			@include box-shadow(0px 0px 5px $status-pre-active);
+		}
+		.inspector__title{
+			border-bottom: 2px solid $status-pre-active;
+		}
+		.inspector-status{
+			background:$status-pre-active;
+		}
+	}
+	&.active{
+		.inspector__profile-pic{
+			border:1px solid $status-active-light;
+			@include box-shadow(0px 0px 5px $status-active);
+		}
+		.inspector__title{
+			border-bottom: 2px solid $status-active;
+		}
+		.inspector-status{
+			background:$status-active;
+		}
+	}
+	&.inactive{
+		.inspector__profile-pic{
+			border:1px solid $status-inactive-light;
+			@include box-shadow(0px 0px 5px $status-inactive);
+		}
+		.inspector__title{
+			border-bottom: 2px solid $status-inactive;
+		}
+		.inspector-status{
+			background:$status-inactive;
+		}
+	}
+}
+
+.account__header{
+	&.pre-active{
+		.account__profile-pic{
+			border:1px solid $status-pre-active-light;
+			@include box-shadow(0px 0px 5px $status-pre-active);
+		}
+		.account__title{
+			border-bottom: 2px solid $status-pre-active;
+		}
+		.account-status{
+			background:$status-pre-active;
+		}
+	}
+	&.active{
+		.account__profile-pic{
+			border:1px solid $status-active-light;
+			@include box-shadow(0px 0px 5px $status-active);
+		}
+		.account__title{
+			border-bottom: 2px solid $status-active;
+		}
+		.account-status{
+			background:$status-active;
+		}
+	}
+	&.inactive{
+		.account__profile-pic{
+			border:1px solid $status-inactive-light;
+			@include box-shadow(0px 0px 5px $status-inactive);
+		}
+		.account__title{
+			border-bottom: 2px solid $status-inactive;
+		}
+		.account-status{
+			background:$status-inactive;
+		}
+	}
+}
+
+
+.inspector__general-info, .account__general-info{
+	margin-bottom: $global-bottom-margin/2;
+	width: 100%;
+    float: left;
+    padding-left: $profile-pic-width + 15;
+    margin-top: -35px;
+    display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-flex-wrap: wrap;
+	flex-wrap: wrap;
+	>span{
+		display: block;
+		width: 50%;
+	}
+}
+.inspector__personal-info{
+	margin-top:$global-bottom-margin/2;
+	table{
+		margin:0;
+	}
+}
+.partner__personal-info{
+	table{
+		margin:0;
+		td{
+			word-break:break-all;
+		}
+	}
+}
+
+.inspector__address{
+	display: block;
+	padding: $global-padding/2;
+	background-color: $meta-grey;
+	vertical-align: top;
+}
+
+/** partner **/
+.partner__block{
+	@extend .inspector__block;
+}
+.partner__profile-pic{
+	@extend .inspector__profile-pic; 
+	width: $profile-pic-width/2;
+    height: $profile-pic-height/2;
+	min-width: $profile-pic-width/2;
+}
+.partner__detail-wrap{
+	margin-top: $global-bottom-margin/3;
+}
+.partner__title{
+	padding: 0;
+    margin: 0 0 0 10px;;
+    line-height: 100%;
+    font-size: 18px;
+	white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	flex-grow:1;
+}

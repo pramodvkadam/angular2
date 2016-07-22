@@ -51,20 +51,22 @@ export class LogService {
             let headers = new Headers({
             Authorization: this._header_auth 
         });
-            this._http.put(`${this._apiUrl}`, options, { headers: headers }).map(response => response.json()).subscribe(data => {
-            this.dataStore.logs = data;
-            this._logs$.next(this.dataStore.logs);
+            return this._http.put(`${this._apiUrl}`, options, { headers: headers })
+                .toPromise()
+                .then(response => response.json())
+                .then(data => {
+                return data;
         }, error => console.log('Could not load logs.'));
     }
 
-    //getServices() {
-    //    let headers = new Headers({
-    //        Authorization: this._header_auth 
-    //    });
-    //        return this._http.get(this._apiUrl + "services", { headers: headers })
-    //            .toPromise()
-    //            .then(this.responseSuccess, this.responseError);
-    //    };
+    getServices() {
+        let headers = new Headers({
+            Authorization: this._header_auth 
+        });
+            return this._http.get(this._apiUrl + "services", { headers: headers })
+                .toPromise()
+                .then(this.responseSuccess, this.responseError);
+        };
 
     //    getApplicationSources() {
     //        return this._http.get(this._apiUrl + "applicationsources")

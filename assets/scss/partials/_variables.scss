@@ -1,0 +1,97 @@
+/*********************
+Media Queries
+*********************/
+$screen-lg  :1200px;
+$screen-md  :992px;
+$screen-sm  :768px;
+$screen-ph  :600px;
+$screen-tw  :480px;
+$screen-xs  :320px;
+
+$retina:    "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5)";
+
+/*********************
+Fonts
+*********************/
+
+$font-faces:
+    StagLight stag-light-web 500 normal,
+    StagMedium stag-medium-web 500 normal;
+
+$fa-font-size-base:   14px !default;
+$fa-line-height-base: 1 !default;
+
+
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+
+$black:             #333;
+$white:             #fff;
+
+$red:               #a94442;
+$light-red:         #f2dede;
+$lightest-red:      #ebccd1;
+
+$green:             #3c763d;
+$light-green:       #dff0d8;
+$lightest-green:    #d6e9c6;
+
+
+$blue:              #337ab7;
+
+
+$orange:			rgb(228, 142, 32);
+$light-orange:      lighten($orange, 10%);
+
+
+$meta-grey:         #f1f1e9;
+$light-grey:        #ebebe1;
+$lighter-grey:      #cccccc;
+$lightest-grey:     #f9f9f9;
+$grey:              #8c8c8c;
+$darker-grey:       #666;
+$dark-grey:         #58595b;
+
+$text-color:        $dark-grey;
+$text-color-dark:   $darker-grey;
+
+$link-color:        $blue;
+$link-hover:        $link-color;
+
+$error:                 $red;
+$error-light:           $light-red;
+$valid:                 $light-green;
+
+
+
+/* status */
+$status-color:				$lightest-grey;
+$status-active:				$green;
+$status-active-light:		$light-green;
+$status-inactive:			$red;
+$status-inactive-light:		$light-red;
+$status-pre-active:			$orange;
+$status-pre-active-light:	$light-orange;
+
+
+
+$legacy-support-for-ie: true;
+$rem-base: 16px;
+$global-padding:            20px;
+$global-margin:				5px;
+$global-bottom-margin:      30px; /* Determines vertical rhythm */
+$global-icon-right-margin:  9px; /* Determines margin between inline icons and text  */
+
+
+
+/*********************
+Definition List
+*********************/
+
+$dl-horizontal-offset: 120px;
+
+
+

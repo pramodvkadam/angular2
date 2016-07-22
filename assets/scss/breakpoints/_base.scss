@@ -1,0 +1,221 @@
+/*********************
+01. HEADER STYLES
+*********************/
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	border:0;
+}
+
+
+/*********************
+02. CONTENT STYLES
+*********************/
+
+.customer__quick-links{
+	position: absolute;
+    top: 24px;
+    right: $global-margin*6;
+	li{
+		display:inline-block;
+		font-size:16px;
+	}
+}
+
+.my-drop-zone{
+	position: relative;
+	height: 300px;
+	font-size: 135%;
+	&:hover{
+		font-size: 150%;
+	}
+	&:after{
+		position:absolute;
+		content:"Click here or drag and drop files here";
+		left: 50%;
+		width: 240px;
+		text-align: center;
+		height: 60px;
+		top: 50%;
+		margin: -30px 0 0 -120px;
+	}
+	input[type=file]{
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		opacity: 0;
+		cursor: pointer;
+		z-index: 1;
+	}
+}
+
+
+/******************
+screens
+******************/
+.input-field__detail-name{
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+
+.add-new__inspector-info, .add-new__partner-info, .add-new__common-info, .add__language-info {
+    padding: $global-padding*3/4;
+    margin: $global-bottom-margin/2 auto 0;
+}
+
+.add-new__common-info{
+	padding-bottom:6px;
+}
+
+.doyouhave__block{
+	float: left;
+    padding: 5px 0 0 0;
+}
+
+
+/** calendar **/
+
+.uib-datepicker-popup {
+    background: #f9f9f9;
+}
+
+.uib-datepicker-popup td,  .uib-datepicker-popup th {
+    padding: 1px;
+}
+
+.uib-datepicker-popup .btn {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    box-shadow: none;
+	@include border-radius(0);
+    color: #333!important;
+}
+.uib-datepicker-popup .btn:hover {
+    background: none;
+}
+
+
+.attachments{
+	a{
+		display:inline-block;
+		margin:2px;
+	}
+}
+
+
+/** Statement page **/
+
+.filter__wrap, .statement__content-wrap{
+	padding:$global-padding*3/4;
+}
+
+.statement__option-panel{
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-align-items: center;
+   align-items: center;
+   margin-bottom:$global-bottom-margin/2;
+   width:100%;
+}
+.statement__date{
+	width:25%;
+}
+.statement__export{
+	margin-left:auto;
+}
+.statement__campsite-count{
+	margin-left:$global-bottom-margin/2;
+}
+#statement-records thead{
+	background:#fff;
+}
+.fixed-header table:first-child{
+	position:fixed;
+	z-index:9999;
+}
+.statement__record{
+	overflow:auto;
+	min-height:200px;
+	max-height:500px;
+	margin-bottom:$global-bottom-margin/2;
+	table{
+		position:relative;
+		th{
+			white-space: nowrap;
+		}
+		td{
+			vertical-align: middle!important;
+		}
+		small{
+			font-size:90%;
+		}
+	}
+}
+
+.load-process{
+	display: block;
+	width: auto;
+	max-width: 300px;
+	margin: 300px auto;
+	text-align: center;
+	color: $white;
+	small{
+		font-size:115%;
+	}
+}
+
+.statement-correction-search-list{
+	>table{
+		table-layout:fixed;
+	}
+}
+
+.create-company{
+	.panel{
+		.panel-heading{
+			.fa{
+				float: right;
+				font-size: .8em;
+			}
+			&.collapsed{
+				border-bottom: 1px solid $light-grey;
+			}
+		}
+	}
+}
+
+.address-list,
+.contact-list{
+	padding: $global-padding/2;
+    background: $meta-grey;
+    border: 1px solid $light-grey;
+    height: 187px;
+    overflow-y: auto;
+	ul{
+		li{
+			margin-bottom: $global-margin;
+			padding-bottom: 3px;
+			border-bottom: 1px dashed $grey;
+		}
+	}
+}
+.contact-list {
+	height: 380px;
+}
+
+
+.insurance-report__wrap{
+	margin-top:10px;
+	.table{
+		table-layout:fixed;
+	}
+}
+

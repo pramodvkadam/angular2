@@ -1,0 +1,128 @@
+.list-group.panel{
+	border-bottom:1px solid $lighter-grey;
+	padding-bottom:1px;
+}
+.list-group-item{
+	padding:5px 10px 5px 10px
+}
+.list-group-item.collapsed .fa:before{
+	@include fa-icon("\e080");
+}
+.product-line__header{
+	border-bottom:0;
+}
+.category__header{
+	padding-left:30px;
+	border-bottom:0;
+	border-top:0;
+}
+.sub-category__header{
+	padding-left:50px;
+	border-bottom:0;
+	border-top:0;
+}
+.sub-category__body{
+	border:1px solid $light-grey;
+	border-top:0;
+	padding-left:70px;
+}
+
+.translations__wrap{
+	margin-bottom:10px;
+}
+.translations__list{
+	height: 180px;
+	overflow: auto;
+	border: 1px solid $light-grey;
+	padding: 10px;
+	margin-bottom:10px;
+	display: inline-flex;
+	flex-wrap: wrap;
+}
+.country-name{
+	width:25%;
+}
+.question-item{
+	width:75%;
+	margin-bottom:5px;
+}
+
+.language-block, .title-block, .question-block, .answer-block{
+	border: 1px solid $light-grey;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+
+.memo-list {
+	border: 1px solid $light-grey;
+	padding: 5px;
+	height: 223px;
+	
+	overflow: auto;
+	font-size:85%;
+}
+.memo-list-item{
+	padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted $light-grey;
+	color:$darker-grey;
+}
+.memo-date{color:#e60003}
+.memo-owner{
+	color: $green;
+    font-weight: bold;
+}
+
+.todo__wrap{
+	margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid $light-grey;
+    background: $meta-grey;
+    padding-bottom: 15px;
+    margin-bottom: -15px;
+}
+
+.todo-list, .org-list {
+	border: 1px solid $light-grey;
+	padding: 5px;
+	height: 295px;
+	background: $meta-grey;
+	overflow: auto;
+	font-size:85%;
+}
+
+.todo-list-item, .org-list-item{
+	padding-bottom: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dotted $light-grey;
+	color:$darker-grey;
+}
+.todo-date,.todo-priority, .todo-status, .org-date{
+	color: $red;
+    margin-right: 5px;
+    border-right: 1px solid $black;
+    padding-right: 5px;
+}
+.org-date{
+	border:0;
+}
+.todo-not-done{
+	color:$red;
+	font-weight: bold;
+}
+.todo-done{
+	color:green;
+	font-weight: bold;
+}
+.todo-owner, .org-owner{
+	color: $green;
+    font-weight: bold;
+}
+
+.parent-organization__list{
+	margin-top: 15px;
+    height: 250px;
+    overflow: auto;
+    border-top: 1px solid $light-grey;
+}

@@ -1,43 +1,56 @@
 ﻿import { Component, OnInit }    from '@angular/core';
-import {LogService} from './log-console.service';
+import {LogService, Log} from './log-console.service';
+import {StatusService, Service} from '../status-monitor/status-monitor.service';
 import { Observable } from 'rxjs/Observable';
 
+
+export class OptionArray {
+    MaxLogMessages: number = 1000;
+    ApplicationSourceName: string;
+    FromDate: string = null;
+    Label: string = null;
+}; 
 
 @Component({
     selector : 'log-console',
     template: `
 <div class="console-panel__wrap col-xs-12 col-sm-6"  >
-    <!--<h3 class="console__title">Synchronization.CRM2011.CRM2016</h3>-->
-   <!-- <select class="console__title form-control" ng-change="vm.getConsoleLogItems(true)" ng-model="vm.selectedSource" ng-options="source for source in vm.sources">
-                                                </select>
-    <div class="console__body" ng-if="vm.consoleLogs.length" scroll-glue>
-        <p ng-repeat="log in vm.consoleLogs | orderBy:'Date'" ng-class="{'console--progress':log.ConsoleLogType == 0,'console--warning':log.ConsoleLogType == 1,'console--exception':log.ConsoleLogType == 2,'console--success':log.ConsoleLogType == 3}">
-            <span ng-bind-html="log.Message | nl2br "></span>
-        </p>
- <p *ngFor="let log of logs$ | async">
+       <h3>log console</h3>
+ <p *ngFor="let log of logs$" [ngClass]="{'console--progress':log.ConsoleLogType == 0,'console--warning':log.ConsoleLogType == 1,'console--exception':log.ConsoleLogType == 2,'console--success':log.ConsoleLogType == 3}">
         {{ log.Message }}
       </p>
-    </div> -->
-    <h3>log console</h3>
 </div>
   `,
-    providers: [LogService]
+    providers: [LogService, StatusService]
 })
 export class LogConsoleComponent implements OnInit {
 
     logs$: Observable<Log[]>;
 
-    private options  = {};
+    applicationSources$: any;
 
-    constructor(private _logService: LogService) {
+    private selectedService: string;
 
-    }
+    private _options = new OptionArray();
+
+    constructor(private _logService: LogService, private _statusService: StatusService) {
+            }
 
 
     ngOnInit() {
-        this.logs$ = this._logService.logs$;
 
-        this._logService.getAllLogs(this.options);
+        this._statusService.getAllApplicationSources().then(data => {
+            this.applicationSources$ = data;
+            this.selectedService = this.applicationSources$[0];
+
+            this._options.ApplicationSourceName = this.selectedService;
+            this._logService.getAllLogs(this._options).then(data => {
+                this.logs$ = data;
+            });
+            
+        });
+
+        
     }
 
 }
