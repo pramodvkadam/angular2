@@ -29,13 +29,13 @@ export class SericePaneService {
     private _access_token: string;
     private _access_type: string;
     private _header_auth: string = "Authorization: ";
-    private _notifications$: Subject<Notification[]>;
+    private _notifications$: Subject<Service[]>;
    
     constructor(private _http: Http, private _config: Config) {
         this._apiUrl = _config.get("apiUrl") + "statusmonitor/logitems/";
         var user = JSON.parse(localStorage.getItem("acsi_b2b_user"));
 
-        this._notifications$ = <Subject<Notification[]>>new Subject();
+        this._notifications$ = <Subject<Service[]>>new Subject();
 
         if (user) {
             this._access_token = user.access_token;

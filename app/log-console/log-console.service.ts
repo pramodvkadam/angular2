@@ -96,12 +96,12 @@ export class LogService {
     //            .then(this.responseSuccess, this.responseError);
     //    };
 
-    //    private responseSuccess(response:any) {
-    //        return response.json();
-    //    }
+        private responseSuccess(response:any) {
+            return response.json();
+        }
 
-    //    private responseError(error:any) {
-    //        console.log(error.data);
-    //        return error.data
-    //    }
+        private responseError(error:any) {
+            console.log(error.data);
+            return error.data
+        }
 }

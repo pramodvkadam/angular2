@@ -1,0 +1,83 @@
+﻿<div class="container-fluid ">
+    <div class="row">
+        <aside class="col-sm-3 filter__wrap">
+            <div class="">
+                <div [hidden]="submitted">
+                    <h1>statement Form</h1>
+                    <form *ngIf="active" (ngSubmit)="onSubmit()" #statementForm="ngForm">
+                        <div class="form-group">
+                            <label for="Season">Season</label>
+                            <input type="text" class="form-control" readonly required
+                                   [(ngModel)]="filter.Season"
+                                   name="Season" #Season="ngModel">
+                            <div [hidden]="Season.valid || Season.pristine" class="alert alert-danger">
+                                Season is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="CampsiteId">Camping ID</label>
+                            <input type="text" class="form-control"
+                                   [(ngModel)]="filter.CampsiteId"
+                                   name="CampsiteId">
+                        </div>
+                        <!--<div class="form-group">
+                            <label for="Season">Season</label>
+                            <input type="text" class="form-control" readonly required
+                                   [(ngModel)]="filter.Season"
+                                   name="Season" #name="ngModel">
+                            <div [hidden]="Season.valid || Season.pristine" class="alert alert-danger">
+                                Season is required
+                            </div>
+                        </div>-->
+                        <div class="form-group">
+                            <label for="PaymentType">Payment type</label>
+                            <select class="form-control" required
+                                    [(ngModel)]="filter.PaymentType"
+                                    name="PaymentType" #PaymentType="ngModel">
+                                <option *ngFor="let p of paymentType" [value]="p.Id">{{p.Name}}</option>
+                            </select>
+                            <div [hidden]="PaymentType.valid || PaymentType.pristine" class="alert alert-danger">
+                                PaymentType is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="FromDate">Form Date</label>
+                            <datepicker [(ngModel)]="filter.FromDate" [minDate]="minDate" [showWeeks]="true" name="FromDate" #FromDate="ngModel"></datepicker>
+
+                            <div [hidden]="FromDate.valid || FromDate.pristine" class="alert alert-danger">
+                                From Date is required
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ToDate">To Date</label>
+                            <datepicker [(ngModel)]="filter.ToDate" [minDate]="minDate" [showWeeks]="true" name="ToDate" #ToDate="ngModel"></datepicker>
+                            <div [hidden]="ToDate.valid || ToDate.pristine" class="alert alert-danger">
+                                To Date is required
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-default" [disabled]="!statementForm.form.valid">Submit</button>
+                      <!--  <button type="button" class="btn btn-default" (click)="newstatement()">New statement</button>-->
+                    </form>
+                </div>
+            </div>
+        </aside>
+      <section class="col-sm-9">
+          <p-dataTable [value]="paymentData">
+              <p-column field="CampsiteId" header="ID"></p-column>
+              <p-column field="CampsiteName" header="Preview"></p-column>
+              <p-column field="CampsiteName" header="Camping Name"></p-column>
+              <p-column field="GrossAmount" header="Gross"></p-column>
+              <p-column field="BalanceAmount" header="To be paid"></p-column>
+              <p-column field="Cancellation" header="Payments"></p-column>
+              <p-column field="GrossAmount" header="Corrections"></p-column>
+          </p-dataTable>    
+      </section>
+        </div>
+<!--<div ng-if="vm.overlay" class="transparant-background">
+    <span class="load-process">
+        <span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span>
+        <small>
+            Processing 
+        </small>
+    </span>
+</div>-->
