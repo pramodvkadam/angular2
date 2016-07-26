@@ -1,0 +1,1 @@
+{"version":3,"file":"statement.routes.js","sourceRoot":"","sources":["../../../app/statement/statement.routes.ts"],"names":[],"mappings":";AACA,oCAAmC,uBAAuB,CAAC,CAAA;AAG3D,2BAAsC,eAAe,CAAC,CAAA;AAEzC,uBAAe,GAAiB;IAC3C;QACE,IAAI,EAAE,WAAW;QACjB,SAAS,EAAE,wCAAkB;QAC7B,WAAW,EAAE,CAAC,sBAAS,CAAC;KACzB;CACF,CAAC"}

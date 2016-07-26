@@ -1,0 +1,1 @@
+{"version":3,"file":"status-monitor.routes.js","sourceRoot":"","sources":["../../app/status-monitor/status-monitor.routes.ts"],"names":[],"mappings":";AACA,yCAAuC,4BAA4B,CAAC,CAAA;AAGpE,2BAAsC,eAAe,CAAC,CAAA;AAEzC,2BAAmB,GAAiB;IAE/C;QACE,IAAI,EAAE,gBAAgB;QACtB,SAAS,EAAE,iDAAsB;QACjC,WAAW,EAAE,CAAC,sBAAS,CAAC;KACzB;CACF,CAAC"}
