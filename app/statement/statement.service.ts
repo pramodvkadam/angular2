@@ -66,5 +66,29 @@ export class StatementService {
                 return data;
             }, error => console.log('Could not load summery.'));
     }
+
+    getStatementPreview(statementOptions: any) {
+        let headers = new Headers({
+            Authorization: this._header_auth
+        });
+        return this._http.get(`${this._acsiCommonurl}previewstatement`+ statementOptions, { headers: headers })
+            .toPromise()
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            }, error => console.log('Could not load preview data.'));
+    }
+
+    approveStatement(statementOptions: any) {
+        let headers = new Headers({
+            Authorization: this._header_auth
+        });
+        return this._http.put(`${this._acsiCommonurl}approvepayment` , statementOptions, { headers: headers })
+            .toPromise()
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            }, error => console.log('Could not load preview data.'));
+    }
     
 }

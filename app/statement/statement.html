@@ -3,7 +3,6 @@
         <aside class="col-sm-2 filter__wrap">
             <div class="">
                 <div [hidden]="submitted">
-                    <h1>statement Form</h1>
                     <form *ngIf="active" (ngSubmit)="onSubmit()" #statementForm="ngForm">
                         <div class="form-group">
                             <label for="Season">Season</label>
@@ -42,15 +41,26 @@
                         </div>
                         <div class="form-group">
                             <label for="FromDate">Form Date</label>
-                            <datepicker [(ngModel)]="filter.FromDate" [minDate]="minDate" [showWeeks]="true" name="FromDate" #FromDate="ngModel"></datepicker>
-
+                            <input [ngModel]="filter.FromDate | date : 'dd-MM-yyyy'" class="form-control" name="FromDate" #FromDate="ngModel" (focus)="toggleFromDatepicker();" required />
+                            <datepicker class="popup" [(ngModel)]="filter.FromDate" [minDate]="minDate" name="FromDate" [showWeeks]="true" *ngIf="fromDatePicker" (ngModelChange)="toggleFromDatepicker();"></datepicker>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="toggleFromDatepicker()">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </span>
                             <div [hidden]="FromDate.valid || FromDate.pristine" class="alert alert-danger">
                                 From Date is required
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="ToDate">To Date</label>
-                            <datepicker [(ngModel)]="filter.ToDate" [minDate]="minDate" [showWeeks]="true" name="ToDate" #ToDate="ngModel"></datepicker>
+                            <input [ngModel]="filter.ToDate | date : 'dd-MM-yyyy'" class="form-control" name="ToDate" #ToDate="ngModel"  (focus)="toggleToDatepicker();"  required/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" (click)="toggleToDatepicker()">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                             <datepicker class="popup" [(ngModel)]="filter.ToDate" [minDate]="minDate" name="ToDate" [showWeeks]="true" *ngIf="toDatePicker" (ngModelChange)="toggleToDatepicker();" ></datepicker>
                             <div [hidden]="ToDate.valid || ToDate.pristine" class="alert alert-danger">
                                 To Date is required
                             </div>
@@ -62,68 +72,92 @@
             </div>
         </aside>
       <section class="col-sm-10" *ngIf="paymentData.length">
-         <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="10">
-              <thead>
-                  <tr>
-                      <th>
-                          <label class="checkbox">
-                              <input [disabled]="filter.PaymentType == '1'" type="checkbox" [(ngModel)]="allApproved" #approved (change)="setAll(approved.checked, 'Approve')"><span></span><span>Approve</span>
-                           </label>
-                      </th>
-                      <th>
-                          <label class="checkbox">
-                              <input [disabled]="filter.PaymentType == '1'" type="checkbox" [(ngModel)]="allMail" #mail (change)="setAll(mail.checked, 'SendMail')"><span></span><span>Mail</span>
-                          </label>
-                      </th>
-                      <th>
-                          <label class="checkbox">
-                              <input [disabled]="filter.PaymentType == '1' || filter.PaymentType == '712340001'" type="checkbox" [(ngModel)]="allInvoice"  #invoice (change)="setAll(invoice.checked, 'CreateInvoice')"><span></span><span>Invoice</span>
-                          </label>
-                      </th>
-                      <th><label>ID</label></th>
-                      <th><label>Preview</label></th>
-                      <th><label>Camping Name</label></th>
-                      <th><label>Gross</label></th>
-                      <th><label>To be paid</label></th>
-                      <th colspan="2"><label>Payments</label></th>
-                      <th colspan="2"><label>Corrections</label></th>
-                      <th colspan="2"><label>Cancellations</label></th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr *ngFor="let payment of mf.data">
-                      <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || payment.is_success" [(ngModel)]="payment.Approve" (change)="checkAllApproved('Approve');"><span></span></label></td>
-                      <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1'" [(ngModel)]="payment.SendMail" (change)="checkAllApproved('SendMail');"><span></span></label></td>
-                      <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || filter.PaymentType == '712340001'" [(ngModel)]="payment.CreateInvoice" (change)="checkAllApproved('CreateInvoice');"><span></span></label></td>
-                      <td>{{payment.CampsiteId}}</td>
-                      <td><a ng-click="getPreviewStatement(payment)">Preview</a></td>
-                      <td>{{payment.CampsiteName}}</td>
-                      <td>{{payment.GrossAmount| currency}}</td>
-                      <td>{{payment.BalanceAmount| currency}}</td>
-                      <!--<td class="white-space__nowwrap"><small class="left separator">{{payment.Payment.TransactionCount}}</small><small class="right">{{payment.Payment.TransactionAmount | currency}}</small></td>-->
-                      <td>{{payment.Payment.TransactionCount}}</td>
-                      <td>{{payment.Payment.TransactionAmount| currency}}</td>
-                      <td>{{payment.Correction.TransactionCount}}</td>
-                      <td>{{payment.Correction.TransactionAmount| currency}}</td>
-                      <td>{{payment.Cancellation.TransactionCount}}</td>
-                      <td>{{payment.Cancellation.TransactionAmount| currency}}</td>
-                  </tr>
-              </tbody>
-              <tfoot>
-                  <tr>
-                      <td colspan="4">
-                          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                      </td>
-                  </tr>
-              </tfoot>
-          </table>  
-      </section>
+          <h2 class="statement__content-title"><i class="fa fa-list-alt" aria-hidden="true"></i> Statements</h2>
+          <section class="statement__option-panel">
+              <div class="input-group statement__date">
+                  <input [ngModel]="filter.statementDate | date : 'dd-MM-yyyy'" class="form-control" name="statementDate" #statementDate="ngModel" (focus)="toggleStatementDatepicker();" required />
+                  <span class="input-group-btn">
+                      <button type="button" class="btn btn-default" (click)="toggleStatementDatepicker()">
+                          <i class="fa fa-calendar" aria-hidden="true"></i>
+                      </button>
+                  </span>
+                  <datepicker class="popup" [(ngModel)]="filter.statementDate" [minDate]="minDate" name="statementDate" [showWeeks]="true" *ngIf="statementDatePicker" (ngModelChange)="toggleStatementDatepicker();"></datepicker>
+  
+              </div>
+              <!--<a href="#" class="statement__export"><i class="fa fa-external-link-square" aria-hidden="true"></i> Export to XLS</a>-->
+              <button [disabled]="!paymentData.length">
+                  <i class="fa fa-external-link-square" aria-hidden="true"></i> Export to CSV
+              </button>
+              <span class="statement__campsite-count"><strong>Campsite Count : {{paymentData.length|| 0}}</strong></span>
+          </section>
+                    <section class="statement__record">
+              <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="10">
+                  <thead>
+                      <tr>
+                          <th>
+                              <label class="checkbox">
+                                  <input [disabled]="filter.PaymentType == '1'" type="checkbox" [(ngModel)]="allApproved" #approved (change)="setAll(approved.checked, 'Approve')"><span></span><span>Approve</span>
+                              </label>
+                          </th>
+                          <th>
+                              <label class="checkbox">
+                                  <input [disabled]="filter.PaymentType == '1'" type="checkbox" [(ngModel)]="allMail" #mail (change)="setAll(mail.checked, 'SendMail')"><span></span><span>Mail</span>
+                              </label>
+                          </th>
+                          <th>
+                              <label class="checkbox">
+                                  <input [disabled]="filter.PaymentType == '1' || filter.PaymentType == '712340001'" type="checkbox" [(ngModel)]="allInvoice" #invoice (change)="setAll(invoice.checked, 'CreateInvoice')"><span></span><span>Invoice</span>
+                              </label>
+                          </th>
+                          <th><label>ID</label></th>
+                          <th><label>Preview</label></th>
+                          <th><label>Camping Name</label></th>
+                          <th><label>Gross</label></th>
+                          <th><label>To be paid</label></th>
+                          <th colspan="2"><label>Payments</label></th>
+                          <th colspan="2"><label>Corrections</label></th>
+                          <th colspan="2"><label>Cancellations</label></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let payment of mf.data">
+                          <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || payment.is_success" [(ngModel)]="payment.Approve" (change)="checkAllApproved('Approve');"><span></span></label></td>
+                          <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1'" [(ngModel)]="payment.SendMail" (change)="checkAllApproved('SendMail');"><span></span></label></td>
+                          <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || filter.PaymentType == '712340001'" [(ngModel)]="payment.CreateInvoice" (change)="checkAllApproved('CreateInvoice');"><span></span></label></td>
+                          <td>{{payment.CampsiteId}}</td>
+                          <td><a ng-click="getPreviewStatement(payment)">Preview</a></td>
+                          <td>{{payment.CampsiteName}}</td>
+                          <td>{{payment.GrossAmount| currency}}</td>
+                          <td>{{payment.BalanceAmount| currency}}</td>
+                          <!--<td class="white-space__nowwrap"><small class="left separator">{{payment.Payment.TransactionCount}}</small><small class="right">{{payment.Payment.TransactionAmount | currency}}</small></td>-->
+                          <td>{{payment.Payment.Transactio
+                          <td>{{payment.Payment.TransactionCount}}</td>
+                          <td>{{payment.Payment.TransactionAmount| currency}}</td>
+                          <td>{{payment.Correction.TransactionCount}}</td>
+                          <td>{{payment.Correction.TransactionAmount| currency}}</td>
+                          <td>{{payment.Cancellation.TransactionCount}}</td>
+                          <td>{{payment.Cancellation.TransactionAmount| currency}}</td>
+                      </tr>
+                  </tbody>
+                  <tfoot>
+                      <tr>
+                          <td colspan="4">
+                              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                          </td>
+                      </tr>
+                  </tfoot>
+              </table>
+          </section>
+          <section class="text-right">
+              <button class="btn" ng-disabled="filter.paymenttype == '1'" (click)="statementApprove();"><i class="fa fa-check" aria-hidden="true"></i> Approve payment</button>
+          </section>
+          </section>
         </div>
-<!--<div ng-if="overlay" class="transparant-background">
+<div ng-if="overlay" class="transparant-background">
     <span class="load-process">
         <span class="fa fa-spinner fa-pulse fa-3x fa-fw"></span>
         <small>
             Processing 
         </small>
     </span>
-</div>-->
+</div>
