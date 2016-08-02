@@ -9,6 +9,7 @@ import {AcsiDatepickerComponent} from '../common/date-picker'
 
 
 @Component({
+    selector: 'statement',
     templateUrl: 'app/statement/statement.html',
     providers: [StatementService, DatePipe],
     directives: [DataTableDirectives, DATEPICKER_DIRECTIVES, PAGINATION_DIRECTIVES],
@@ -154,38 +155,45 @@ export class StatementComponent implements OnInit {
     };
 
     getStatementPreview(statementRow) {
+        this.setDefaultOptionsForPreview();
         this.previewStatementObject.CampsiteId = statementRow.CampsiteId;
         this.previewStatementObject.AccountId = statementRow.AccountId;
         this.previewStatementObject.InvoiceOnPdf = statementRow.CreateInvoice;
         this.previewStatementObject.AccountLocationId = statementRow.AccountLocationId;
+        this._statementService.getStatementPreview(this.previewStatementObject).then(response => {
+            console.log(response);
+        },error => console.log(error))
     }
 
     statementApprove = function (increment: number = 0) {
-        console.log(this.paymentData[increment].Approve);
         if (this.paymentData[increment].Approve) {
-            this.previewStatementObject.AccountId = this.paymentData[increment].AccountId;
-            this.previewStatementObject.CampsiteId = this.paymentData[increment].CampsiteId;
-            this.previewStatementObject.MailToAccount = this.paymentData[increment].SendMail;
-            this.previewStatementObject.MailSendToAccount = this.paymentData[increment].SendMail;
-            this.previewStatementObject.InvoiceOnPdf = this.paymentData[increment].CreateInvoice;
-            this.previewStatementObject.AccountLocationId = this.paymentData[increment].AccountLocationId;
-            this.overlay= true;
-            this._statementService.approveStatement(this.previewStatementObject).then(function (response) {
-                console.log(response);
+            this.setDefaultOptionsForApprove();
+            this.approveStatementObject.AccountId = this.paymentData[increment].AccountId;
+            this.approveStatementObject.CampsiteId = this.paymentData[increment].CampsiteId;
+            this.approveStatementObject.MailToAccount = this.paymentData[increment].SendMail;
+            this.approveStatementObject.MailSendToAccount = this.paymentData[increment].SendMail;
+            this.approveStatementObject.InvoiceOnPdf = this.paymentData[increment].CreateInvoice;
+            this.approveStatementObject.AccountLocationId = this.paymentData[increment].AccountLocationId;
+            this.overlay = true;
+            this._statementService.approveStatement(this.approveStatementObject).then(response => {
+
                 this.paymentData[increment]['is_success'] = response;
 
                 if (response) {
                     this.paymentData[increment].Approve = false;
                 }
-                this.overlay= false;
+                this.overlay = false;
                 this.proccessedCount++;
                 if (++increment < this.paymentData.length) {
                     setTimeout(this.statementApprove(increment), 1000);
                 }
 
-            }).catch(function (response) {
+            }).catch(error => {
                 this.paymentData[increment]['is_success'] = false;
-                this.overlay= false;
+                if (++increment < this.paymentData.length) {
+                    setTimeout(this.statementApprove(increment), 1000);
+                }
+                this.overlay = false;
             });
         } else {
             if (++increment < this.paymentData.length) {

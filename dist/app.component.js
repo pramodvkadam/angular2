@@ -13,7 +13,9 @@ var router_1 = require('@angular/router');
 var header_component_1 = require('./common/header.component');
 var footer_component_1 = require('./common/footer.component');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(viewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+        this.viewContainerRef = viewContainerRef;
     }
     AppComponent = __decorate([
         core_1.Component({
@@ -21,7 +23,7 @@ var AppComponent = (function () {
             template: "<div class=\"container-fluid\">\n <header-component></header-component>\n  <router-outlet></router-outlet>\n<footer-component></footer-component>\n<div class=\"container-fluid\">\n",
             directives: [router_1.ROUTER_DIRECTIVES, header_component_1.HeaderComponent, footer_component_1.FooterComponent]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [core_1.ViewContainerRef])
     ], AppComponent);
     return AppComponent;
 }());

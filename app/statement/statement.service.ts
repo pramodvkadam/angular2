@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { Headers, Http} from '@angular/http';
+import { Headers, Http, URLSearchParams} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
@@ -69,26 +69,44 @@ export class StatementService {
 
     getStatementPreview(statementOptions: any) {
         let headers = new Headers({
-            Authorization: this._header_auth
+            Authorization: this._header_auth,
+
         });
-        return this._http.get(`${this._acsiCommonurl}previewstatement`+ statementOptions, { headers: headers })
+        let params: URLSearchParams = new URLSearchParams();
+        params.append("BookingPaymentType", statementOptions.BookingPaymentType);
+        params.append("BookingSeason", statementOptions.BookingSeason);
+        params.append("StartDate", statementOptions.StartDate);
+        params.append("EndDate", statementOptions.EndDate);
+        params.append("StatementDate", statementOptions.StatementDate);
+        params.append("CampsiteId", statementOptions.CampsiteId);
+        params.append("AccountId", statementOptions.AccountId);
+        params.append("InvoiceOnPdf", statementOptions.InvoiceOnPdf);
+        params.append("AccountLocationId", statementOptions.AccountLocationId);
+
+        return this._http.get(`${this._apiUrl}previewstatement`, {
+            search: params,
+            headers: headers
+        })
             .toPromise()
             .then(response => response.json())
             .then(data => {
                 return data;
-            }, error => console.log('Could not load preview data.'));
+            }, error => {
+                console.log('Could not load preview data.');
+                return error;
+            });
     }
 
     approveStatement(statementOptions: any) {
         let headers = new Headers({
             Authorization: this._header_auth
         });
-        return this._http.put(`${this._acsiCommonurl}approvepayment` , statementOptions, { headers: headers })
+        return this._http.put(`${this._apiUrl}approvepayment`, statementOptions, { headers: headers })
             .toPromise()
             .then(response => response.json())
             .then(data => {
                 return data;
-            }, error => console.log('Could not load preview data.'));
+            });
     }
     
 }

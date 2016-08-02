@@ -176,7 +176,6 @@ var StatementComponent = (function () {
     };
     StatementComponent = __decorate([
         core_1.Component({
-            selector: 'statement',
             templateUrl: 'app/statement/statement.html',
             providers: [statement_service_1.StatementService, common_1.DatePipe],
             directives: [datatable_1.DataTableDirectives, ng2_bootstrap_1.DATEPICKER_DIRECTIVES, ng2_bootstrap_1.PAGINATION_DIRECTIVES],

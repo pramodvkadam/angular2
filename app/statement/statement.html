@@ -3,12 +3,15 @@
         <aside class="col-sm-2 filter__wrap">
             <div class="">
                 <div [hidden]="submitted">
+                 
                     <form *ngIf="active" (ngSubmit)="onSubmit()" #statementForm="ngForm">
+                        {{statementForm }}
                         <div class="form-group">
                             <label for="Season">Season</label>
                             <input type="text" class="form-control" readonly required
                                    [(ngModel)]="filter.Season"
                                    name="Season" #Season="ngModel">
+                            {{Season.errors}} {{Season.$errors}}
                             <div [hidden]="Season.valid || Season.pristine" class="alert alert-danger">
                                 Season is required
                             </div>
@@ -91,7 +94,7 @@
               <span class="statement__campsite-count"><strong>Campsite Count : {{paymentData.length|| 0}}</strong></span>
           </section>
                     <section class="statement__record">
-              <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="10">
+              <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="{{paymentData.length}}">
                   <thead>
                       <tr>
                           <th>
@@ -120,12 +123,12 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr *ngFor="let payment of mf.data">
+                      <tr *ngFor="let payment of mf.data" [ngClass]="{'danger':!payment.is_success && payment.is_success != undefined ,'success':payment.is_success}">
                           <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || payment.is_success" [(ngModel)]="payment.Approve" (change)="checkAllApproved('Approve');"><span></span></label></td>
                           <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1'" [(ngModel)]="payment.SendMail" (change)="checkAllApproved('SendMail');"><span></span></label></td>
                           <td><label class="checkbox"><input type="checkbox" [disabled]="filter.PaymentType == '1' || filter.PaymentType == '712340001'" [(ngModel)]="payment.CreateInvoice" (change)="checkAllApproved('CreateInvoice');"><span></span></label></td>
                           <td>{{payment.CampsiteId}}</td>
-                          <td><a ng-click="getPreviewStatement(payment)">Preview</a></td>
+                          <td><a (click)="getStatementPreview(payment)">Preview {{payment.is_success}}</a></td>
                           <td>{{payment.CampsiteName}}</td>
                           <td>{{payment.GrossAmount| currency}}</td>
                           <td>{{payment.BalanceAmount| currency}}</td>

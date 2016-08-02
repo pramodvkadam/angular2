@@ -1,0 +1,1 @@
+{"version":3,"file":"bookings.routes.js","sourceRoot":"","sources":["../../app/bookings/bookings.routes.ts"],"names":[],"mappings":";AACA,mCAAkC,sBAAsB,CAAC,CAAA;AAGzD,2BAAsC,eAAe,CAAC,CAAA;AAEzC,sBAAc,GAAiB;IAC1C;QACE,IAAI,EAAE,UAAU;QAChB,SAAS,EAAE,sCAAiB;QAC5B,WAAW,EAAE,CAAC,sBAAS,CAAC;KACzB;CACF,CAAC"}

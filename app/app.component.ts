@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef } from '@angular/core';
 import { ROUTER_DIRECTIVES } from '@angular/router';
 import {HeaderComponent} from './common/header.component';
 
@@ -14,4 +14,8 @@ import {FooterComponent} from './common/footer.component';
 `,
   directives: [ROUTER_DIRECTIVES, HeaderComponent, FooterComponent]
 })
-export class AppComponent { }
+export class AppComponent {
+    public constructor(public viewContainerRef: ViewContainerRef) {
+        this.viewContainerRef = viewContainerRef;
+    }
+}

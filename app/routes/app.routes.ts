@@ -2,6 +2,8 @@
 
 import {statusMonitorRoutes} from '../status-monitor/status-monitor.routes';
 import {statementRoutes} from '../statement/statement.routes';
+
+import {bookingsRoutes} from '../bookings/bookings.routes';
 import {searchRoutes} from '../search/search.routes';
 
 
@@ -18,7 +20,8 @@ export const routes: RouterConfig = [{
   ...loginRoutes,
   ...statusMonitorRoutes,
   ...statementRoutes,
-  ...searchRoutes
+  ...searchRoutes,
+  ...bookingsRoutes
 ];
 
 export const appRouterProviders = [
