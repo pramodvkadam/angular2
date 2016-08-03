@@ -68,6 +68,31 @@ var BookingService = (function () {
             return console.log('Could not load Booking.');
         });
     };
+    BookingService.prototype.getBookingDetailsById = function (bookingId) {
+        var headers = new http_1.Headers({
+            Authorization: this._header_auth
+        });
+        return this._http.get(this._apiUrl + "correction/bookingdetails/" + bookingId, { headers: headers })
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+            return data;
+        }).catch(function (error) {
+            return console.log('Could not load Booking.');
+        });
+    };
+    BookingService.prototype.saveCorrection = function (correction) {
+        var headers = new http_1.Headers({
+            Authorization: this._header_auth,
+            "Content-Type": "application/json"
+        });
+        var correction = Object.assign({}, correction);
+        return this._http.put(this._apiUrl + "correction/create", correction, { headers: headers }).toPromise()
+            .then(function (response) { return response.json(); })
+            .then(function (data) {
+            return data;
+        }).catch(function (error) { return error; });
+    };
     BookingService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, app_config_1.Config])

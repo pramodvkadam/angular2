@@ -110,5 +110,33 @@ export class BookingService {
             );
     }
 
+    getBookingDetailsById(bookingId: number) {
+        let headers = new Headers({
+            Authorization: this._header_auth
+        });
+        return this._http.get(`${this._apiUrl}correction/bookingdetails/${bookingId}`, { headers: headers })
+            .toPromise()
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            }).catch(error =>
+                console.log('Could not load Booking.')
+            );
+    }
+
+    saveCorrection(correction: any) {
+        let headers = new Headers({
+            Authorization: this._header_auth,
+            "Content-Type" : "application/json"
+        });
+        var correction =  Object.assign({}, correction);
+        return this._http.put(`${this._apiUrl}correction/create`, correction, { headers: headers }).toPromise()
+            .then(response => response.json())
+            .then(data => {
+                return data;
+            }).catch(error =>
+               return error;
+            );
+    }
     
 }

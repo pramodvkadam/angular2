@@ -94,7 +94,7 @@
               <span class="statement__campsite-count"><strong>Campsite Count : {{paymentData.length|| 0}}</strong></span>
           </section>
                     <section class="statement__record">
-              <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="{{paymentData.length}}">
+              <table class="table table-striped table-responsive" [mfData]="paymentData" #mf="mfDataTable" [mfRowsOnPage]="paymentData.length">
                   <thead>
                       <tr>
                           <th>
@@ -142,13 +142,6 @@
                           <td>{{payment.Cancellation.TransactionAmount| currency}}</td>
                       </tr>
                   </tbody>
-                  <tfoot>
-                      <tr>
-                          <td colspan="4">
-                              <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                          </td>
-                      </tr>
-                  </tfoot>
               </table>
           </section>
           <section class="text-right">
